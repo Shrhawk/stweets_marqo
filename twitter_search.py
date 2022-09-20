@@ -43,14 +43,14 @@ def search_tweet(query=''):
     :param query:
     :return:
     """
-    results = mq.index(INDEX_NAME).search(q=query)
+    results = mq.index(INDEX_NAME).search(query, searchable_attributes=["Description"])
     return results
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--populate-index', action='store_true')
-    parser.add_argument('--query', action='store_true')
+    parser.add_argument('--query')
     args = parser.parse_args()
 
     if args.populate_index:
